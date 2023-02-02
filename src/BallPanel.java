@@ -22,10 +22,10 @@ public class BallPanel extends JPanel{
                 if (e.getKeyCode() == 65){
                     newBall.moveWest();
                 }
-                if (e.getKeyCode() == 87 && newBall.gety() > 0){
+                if (e.getKeyCode() == 87){
                     newBall.moveNorth();
                 }
-                if (e.getKeyCode() == 83 && newBall.gety() < getHeight() - newBall.getSize()){
+                if (e.getKeyCode() == 83){
                     newBall.moveSouth();
                 }
             }
@@ -42,7 +42,8 @@ public class BallPanel extends JPanel{
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
-
+        g.setColor(new Color(newBall.getr(),newBall.getg(),newBall.getb()));
+        g.fillOval(newBall.getx(),newBall.gety(),newBall.getSize(),newBall.getSize());
         for(int i = 0; i < balls.length;i++){
             g.setColor(new Color(balls[i].getr(),balls[i].getg(),balls[i].getb()));
             g.fillOval(balls[i].getx(),balls[i].gety(),balls[i].getSize(),balls[i].getSize());
@@ -54,13 +55,10 @@ public class BallPanel extends JPanel{
             if(balls[i].gety() + balls[i].getSize() >= getHeight() || balls[i].gety() <= 0){
                 balls[i].bouncey();
             }
-            if(newBall.getx() >= getWidth()){
-
+            if(balls[i].gety() + balls[i].getSize() > getHeight()){
+              balls[i].sety(getHeight() - balls[i].getSize());
             }
         }
-        //drawing control ball
-        g.setColor(new Color(newBall.getr(),newBall.getg(),newBall.getb()));
-        g.fillOval(newBall.getx(),newBall.gety(),newBall.getSize(),newBall.getSize());
         try {
             Thread.sleep(10);
         } catch(Exception e) {

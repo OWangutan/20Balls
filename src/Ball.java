@@ -13,7 +13,6 @@ public class Ball{
     }
     public void moveEast(){
         x++;
-
     }
     public void moveNorth(){
         y--;
