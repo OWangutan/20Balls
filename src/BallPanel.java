@@ -58,6 +58,9 @@ public class BallPanel extends JPanel{
             if(balls[i].gety() + balls[i].getSize() > getHeight()){
               balls[i].sety(getHeight() - balls[i].getSize());
             }
+            if(balls[i].getx() + balls[i].getSize() > getWidth()){
+                balls[i].setx(getWidth() - balls[i].getSize());
+            }
         }
         try {
             Thread.sleep(10);
